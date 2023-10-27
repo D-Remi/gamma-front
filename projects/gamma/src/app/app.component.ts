@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiUrlService } from './api-url.service';
-
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -36,12 +36,15 @@ export class AppComponent implements OnInit {
 
   uploadFile() {
     const formData = new FormData();
-    formData.append('file', this.selectedFile);
+    formData.append('excelFile', this.selectedFile);
     const apiEndpoint = this.apiUrl.replace('http://localhost:4200/', '');
-    
-    this.http.post(apiEndpoint + '/import-file', formData).subscribe((response) => {
-      
-      console.log(response);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+      }),
+    };
+    this.http.post(apiEndpoint + '/import-file', formData, httpOptions).subscribe((response) => {
+      this.loadGroupMusicaux();
     });
   }
 
