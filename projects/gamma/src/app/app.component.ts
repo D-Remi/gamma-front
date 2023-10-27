@@ -34,16 +34,17 @@ export class AppComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.selectedFile = file;
+  }
+
   uploadFile() {
     const formData = new FormData();
+    console.log(this.selectedFile)
     formData.append('excelFile', this.selectedFile);
     const apiEndpoint = this.apiUrl.replace('http://localhost:4200/', '');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-      }),
-    };
-    this.http.post(apiEndpoint + '/import-file', formData, httpOptions).subscribe((response) => {
+    this.http.post(apiEndpoint + '/import-file', formData).subscribe((response) => {
       this.loadGroupMusicaux();
     });
   }

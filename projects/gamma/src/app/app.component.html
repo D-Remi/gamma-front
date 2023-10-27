@@ -4,7 +4,7 @@
     <form (ngSubmit)="uploadFile()" #fileForm="ngForm">
       <div class="form-group">
         <label for="excelFile">Sélectionnez un fichier Excel</label>
-        <input type="file" class="form-control-file" id="excelFile" accept=".xlsx, .xls" name="excelFile" [(ngModel)]="selectedFile" required>
+        <input type="file" class="form-control-file" id="excelFile" accept=".xlsx, .xls" name="excelFile"(change)="onFileSelected($event)" required>
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="!fileForm.form.valid">Importer</button>
     </form>
