@@ -1,0 +1,48 @@
+<div class="container d-flex justify-content-center" style="height: 20vh;">
+  <div class="text-center">
+    <h2>Importation de fichier Excel</h2>
+    <form (ngSubmit)="uploadFile()" #fileForm="ngForm">
+      <div class="form-group">
+        <label for="excelFile">Sélectionnez un fichier Excel</label>
+        <input type="file" class="form-control-file" id="excelFile" accept=".xlsx, .xls" name="excelFile" [(ngModel)]="selectedFile" required>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!fileForm.form.valid">Importer</button>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Liste des Groupes Musicaux</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Origine</th>
+        <th>Ville</th>
+        <th>Année de début</th>
+        <th>Année de séparation</th>
+        <th>Fondateurs</th>
+        <th>Membres</th>
+        <th>Courant Musical</th>
+        <th>Présentation</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groupMusicauxList">
+        <td>{{ group.id }}</td>
+        <td>{{ group.origine }}</td>
+        <td>{{ group.ville }}</td>
+        <td>{{ group.anneeDebut }}</td>
+        <td>{{ group.anneeSeparation }}</td>
+        <td>{{ group.fondateurs }}</td>
+        <td>{{ group.membres }}</td>
+        <td>{{ group.courantMusical }}</td>
+        <td>{{ group.presentation }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteGroup(group.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
