@@ -25,6 +25,7 @@
               "projects/gamma/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/gamma/src/styles.css"
             ],
             "scripts": []

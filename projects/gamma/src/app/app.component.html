@@ -41,6 +41,7 @@
         <td>{{ group.presentation }}</td>
         <td>
           <button class="btn btn-danger" (click)="deleteGroup(group.id)">Supprimer</button>
+          <button class="btn btn-primary" (click)="openEditModal(group)">Modifier</button>
         </td>
       </tr>
     </tbody>
